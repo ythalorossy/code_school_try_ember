@@ -1,0 +1,45 @@
+<p>Order {{model.id}} for {{model.name}}</p>
+<p>The order os ready!</p>
+
+<table width="100%" border="1">
+  <thead>
+    <tr>
+      <th>
+        Item
+      </th>
+      <th>
+        Qty
+      </th>
+      <th>
+        Unit
+      </th>
+      <th>
+        Cost
+      </th>
+      <th>
+        Cost%
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model.items as |lineItem|}}
+      <tr>
+        <td>{{lineItem.title}}</td>
+        <td>{{lineItem.quantity}}</td>
+        <td>${{lineItem.unitPrice}}</td>
+        <td>${{lineItem.price}}</td>
+        <td>{{item-percentage itemPrice=lineItem.price orderPrice=model.price}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>
+      TOTAL
+      </td>
+      <td colspan="4">
+        ${{model.price}}
+      </td>
+    </tr>
+  </tfoot>
+</table>
